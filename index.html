@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main id="api">
+
+    </main>
+    <script>
+        let pokemones = [];
+        let totalPokes = 20; /* debe agregarse uno mas ya q el indice comienza en 0 */
+
+        async function  conexionLista() {
+            const res = await fetch('https://picsum.photos/v2/list?page=2&limit=20/300/200')
+            const data = await res.json()
+            pokemones = data;
+            //mostrarLista(pokemones)
+            console.log(pokemones);
+            for(var i=0; i<totalPokes; i++){
+                console.log(pokemones[i].author);
+                document.getElementById("api").innerHTML += "<img src=" + data[i].download_url + ">"
+            }
+        }
+
+        conexionLista()
+    </script>
+</body>
+</html>
